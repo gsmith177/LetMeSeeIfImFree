@@ -1,0 +1,49 @@
+# === Rust build artifacts ===
+/target
+**/*.rs.bk
+
+# === IDE / Editor settings ===
+.idea/
+.vscode/
+*.sw?
+*.sublime*
+
+# === OS-specific files ===
+.DS_Store
+Thumbs.db
+
+# === Logs and runtime files ===
+*.log
+
+# === Cargo package files ===
+Cargo.lock
+.cargo/
+
+# === SQLite database files ===
+*.db
+*.sqlite3
+*.sqlite
+*.db-journal
+*.sqlite-shm
+*.sqlite-wal
+
+# === Environment variables ===
+.env
+.env.*
+
+# === SQLx migration history (optional) ===
+sqlx-data.json
+
+# === Compiled binaries ===
+*.exe
+*.dll
+*.so
+*.dylib
+
+# === Node/npm (if frontend is added later) ===
+node_modules/
+dist/
+build/
+
+# === App-specific exclusions ===
+/LetMeSeeIfImFree-backup/
