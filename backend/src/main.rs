@@ -21,7 +21,7 @@ fn main() -> Result<(), Box<dyn std::error::Error>> {
     eframe::run_native(
         "Let Me See If I'm Free",
         options,
-        Box::new(|_cc| Box::new(MyApp::new(db))),
+        Box::new(|_cc| Ok(Box::new(MyApp::new(db)) as Box<dyn eframe::App>)),
     )?;
     Ok(())
 }

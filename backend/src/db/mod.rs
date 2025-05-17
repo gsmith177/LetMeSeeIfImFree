@@ -2,7 +2,7 @@ use rusqlite::{params, Connection, Result};
 use chrono::{NaiveDate, NaiveDateTime};
 
 #[derive(Debug)]
-pub struct Event {
+pub struct dbEvent {
     pub id: i32,
     pub title: String,
     pub description: String,
@@ -39,10 +39,10 @@ pub fn create_event(
     Ok(())
 }
 
-pub fn get_all_events(conn: &Connection) -> Result<Vec<Event>> {
+pub fn get_all_events(conn: &Connection) -> Result<Vec<dbEvent>> {
     let mut stmt = conn.prepare("SELECT id, title, description, start_time, end_time FROM events")?;
     let rows = stmt.query_map([], |row| {
-        Ok(Event {
+        Ok(dbEvent {
             id: row.get(0)?,
             title: row.get(1)?,
             description: row.get(2)?,
@@ -77,13 +77,13 @@ pub fn get_events_by_date_range(
     conn: &Connection,
     start: NaiveDateTime,
     end: NaiveDateTime,
-) -> Result<Vec<Event>> {
+) -> Result<Vec<dbEvent>> {
     let mut stmt = conn.prepare(
         "SELECT id, title, description, start_time, end_time FROM events
          WHERE start_time >= ?1 AND end_time <= ?2",
     )?;
     let rows = stmt.query_map(params![start, end], |row| {
-        Ok(Event {
+        Ok(dbEvent {
             id: row.get(0)?,
             title: row.get(1)?,
             description: row.get(2)?,
